@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PLATYPUS YOUTUBE UNBLOCKER</title>
 
-  <!-- ✅ Google Font: Noto Sans. -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- ✅ Google Material Icons: Light Mode & Dark Mode. -->
+  <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <style>
@@ -21,155 +21,32 @@
       --input-bg: #ffffff;
       --input-border: #ced4da;
     }
+    [data-theme="dark"] { background-color: var(--bg-dark); color: var(--text-dark); }
+    [data-theme="light"] { background-color: var(--bg-light); color: var(--text-light); }
 
-    [data-theme="dark"] {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
+    * { box-sizing: border-box; font-family: 'Noto Sans', 'Segoe UI', Helvetica, Arial, sans-serif; }
+    body { margin: 0; padding: 0; transition: background-color 0.3s, color 0.3s; }
+    header, section { max-width: 1200px; margin: auto; padding: 1rem; text-align: center; }
 
-    [data-theme="light"] {
-      background-color: var(--bg-light);
-      color: var(--text-light);
-    }
+    .iframe { max-width: 100%; aspect-ratio: 16 / 9; padding: 1rem; display: none; }
+    iframe { width: 100%; height: 100%; border: none; }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Noto Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    header, section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .iframe {
-      max-width: 100%;
-      aspect-ratio: 16 / 9;
-      padding: 1rem;
-      display: none;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    input[type="text"] {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 0.25rem;
-      border: 1px solid var(--input-border);
-      background-color: var(--input-bg);
-      color: var(--text-light);
-    }
-
-    button {
-      margin-left: 0.5rem;
-      padding: 0.5rem 1rem;
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 0.25rem;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
+    input[type="text"] { padding: 0.5rem; font-size: 1rem; border-radius: 0.25rem; border: 1px solid var(--input-border); background-color: var(--input-bg); color: var(--text-light); }
+    button { margin-left: 0.5rem; padding: 0.5rem 1rem; background-color: var(--primary); color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-weight: 600; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
 
     @media (max-width: 600px) {
-      input[type="text"], button {
-        display: block;
-        width: 100%;
-        margin: 0.5rem 0;
-      }
+      input[type="text"], button { display: block; width: 100%; margin: 0.5rem 0; }
     }
 
-    .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .icon-label {
-      font-family: 'Material Symbols Outlined', Arial, sans-serif;
-      font-size: 24px;
-      margin: 0 0.5rem;
-      line-height: 1;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 48px;
-      height: 24px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      border-radius: 24px;
-      transition: 0.4s;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      left: 2px;
-      bottom: 2px;
-      background-color: white;
-      border-radius: 50%;
-      transition: 0.4s;
-    }
-
-    input:checked + .slider {
-      background-color: #666;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(24px);
-    }
-
-    .fallback-icon {
-      display: none;
-      font-size: 16px;
-    }
-
-    .material-symbols-outlined:empty + .fallback-icon {
-      display: inline;
-    }
+    .theme-toggle { position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; }
+    .icon-label { font-family: 'Material Symbols Outlined'; font-size: 24px; margin: 0 0.5rem; }
+    .switch { position: relative; display: inline-block; width: 48px; height: 24px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; border-radius: 24px; transition: 0.4s; }
+    .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; border-radius: 50%; transition: 0.4s; }
+    input:checked + .slider { background-color: #666; }
+    input:checked + .slider:before { transform: translateX(24px); }
   </style>
 
   <script>
@@ -188,18 +65,26 @@
       localStorage.setItem("theme", newTheme);
     }
 
-    function purify(key) {
-      document.querySelector('.iframe').style.display = 'block';
-      document.querySelector('iframe').setAttribute('src', 'https://www.youtube-nocookie.com/embed/' + key);
+    function purify(url) {
+      const match = url.match(/(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch\?v=|embed\/|shorts\/)?([\w-]+)/);
+      if (match && match[6]) {
+        const key = match[6];
+        document.querySelector('.iframe').style.display = 'block';
+        document.querySelector('iframe').setAttribute('src', 'https://www.youtube-nocookie.com/embed/' + key);
+      } else {
+        alert("Invalid YouTube URL!");
+      }
     }
 
     function init() {
       setThemeFromPreference();
-      const params = new URLSearchParams(window.location.search.substr(1));
-      if (params.has('v')) {
-        const match = params.get('v').match(/(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?([\w-]+)/);
-        if (match && match[7]) purify(match[7]);
-      }
+
+      const form = document.getElementById("video-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const input = document.querySelector("input[name='v']").value;
+        purify(input);
+      });
     }
 
     window.onload = init;
@@ -207,24 +92,19 @@
 </head>
 
 <body>
+  <!-- 🌗 Toggle -->
   <div class="theme-toggle">
-    <span class="icon-label">
-      <span class="material-symbols-outlined">light_mode</span>
-      <span class="fallback-icon">☀️</span>
-    </span>
+    <span class="icon-label">☀️</span>
     <label class="switch">
       <input type="checkbox" id="theme-checkbox" onchange="toggleTheme()" />
       <span class="slider"></span>
     </label>
-    <span class="icon-label">
-      <span class="material-symbols-outlined">dark_mode</span>
-      <span class="fallback-icon">🌙</span>
-    </span>
+    <span class="icon-label">🌙</span>
   </div>
 
   <header>
     <h1>PLATYPUS YOUTUBE UNBLOCKER</h1>
-    <form method="get" action="/">
+    <form id="video-form">
       <input type="text" name="v" placeholder="Paste YT URL here" />
       <button type="submit">Go</button>
     </form>
